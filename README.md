@@ -9,5 +9,13 @@ La aplicación implementa lo siguiente:
 - Uso de funciones de SASS
 - Configuración y uso de parciales
 - Transiciones en SASS
+- Redux aplicado en el proyecto
+- Firebase
+- FireStore
+- Thunk
+- Formularios
+- Google SingIn
+- Acciones Asíncronas
+- Mantiene el estado de la autenticación
 
 Recuerden instalar los modulos de node con `npm install`.

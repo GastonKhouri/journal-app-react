@@ -1,17 +1,44 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { startGoogleLogin, startLoginEmailPassword } from '../../actions/auth';
+import { useForm } from '../../hooks/useForm';
 
 const LoginScreen = () => {
+
+    const dispatch = useDispatch();
+
+    const { loading } = useSelector(state => state.ui);
+
+    const [ formValues, handleInputChange ] = useForm({ 
+        email: 'fernando@gmail.com', 
+        password: '123456' 
+    });
+
+    const { email, password } = formValues;
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        dispatch(startLoginEmailPassword(email, password));
+    }
+
+    const handleGoogleLogin = () => {
+        dispatch(startGoogleLogin());
+    }
+    
+
     return (
         <>
             <h3 className='auth__title'> Login </h3>
 
-            <form>
+            <form onSubmit={ handleLogin }>
 
                 <input 
                     type='text'
                     placeholder='Email'
                     name='email'
+                    value={ email }
+                    onChange={ handleInputChange }
                     className='auth__input'
                     autoComplete='off'
                 />
@@ -20,12 +47,15 @@ const LoginScreen = () => {
                     type='password'
                     placeholder='Password'
                     name='password'
+                    value={ password }
+                    onChange={ handleInputChange }
                     className='auth__input'
                 />
 
                 <button
                     type='submit'
                     className='btn btn-primary btn-block'
+                    disabled={ loading }
                 >
                     Login
                 </button>
@@ -37,6 +67,7 @@ const LoginScreen = () => {
 
                     <div
                         className="google-btn"
+                        onClick={ handleGoogleLogin }
                     >
                         <div className="google-icon-wrapper">
                             <img className="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="google button" />
