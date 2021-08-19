@@ -24,3 +24,7 @@ La aplicación implementa lo siguiente:
 - Limpieza en el logout
 
 Recuerden instalar los modulos de node con `npm install`.
+
+Si quieren probar la aplicación en producción les dejo el siguiente link: 
+
+[JournalApp](https://journal-app-react-gastonkhouri.netlify.app)
