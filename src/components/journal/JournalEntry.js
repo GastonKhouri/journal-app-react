@@ -1,27 +1,55 @@
 import React from 'react'
+import moment from 'moment'
+import { useDispatch } from 'react-redux';
+import { activeNote } from '../../actions/notes';
 
-const JournalEntry = () => {
+const JournalEntry = ({ id, date, title, body, url }) => {
+
+    const dispatch = useDispatch();
+    const noteDate = moment(date);
+
+    const handleEntryClick = () => {
+        
+        const note = {
+            date,
+            title,
+            body,
+            url
+        }
+
+        dispatch(activeNote(id, note));
+
+    }
+    
+
     return (
-        <div className='journal__entry pointer'>
-            <div 
-                className='journal__entry-picture'
-                style={{ 
-                    backgroundSize: 'cover', 
-                    backgroundImage: 'url(https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500)' }}
-            ></div>
+        <div 
+            className='journal__entry pointer animate__animated animate__fadeIn animate__faster'
+            onClick={ handleEntryClick }
+        >
+
+            {
+                url &&
+                <div 
+                    className='journal__entry-picture'
+                    style={{ 
+                        backgroundSize: 'cover', 
+                        backgroundImage: `url(${ url })` }}
+                ></div>
+            }
 
             <div className='journal__entry-body'>
                 <p className='journal__entry-title'>
-                    Un nuevo dia
+                    { title }
                 </p>
                 <p className='journal__entry-content'>
-                    Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas
+                    { body }
                 </p>
             </div>
 
             <div className='journal__entry-date-box'>
-                <span>Monday</span>
-                <h4>24</h4>
+                <span> { noteDate.format('dddd') } </span>
+                <h4> { noteDate.format('Do') } </h4>
             </div>
 
         </div>

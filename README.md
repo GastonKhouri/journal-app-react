@@ -17,5 +17,10 @@ La aplicación implementa lo siguiente:
 - Google SingIn
 - Acciones Asíncronas
 - Mantiene el estado de la autenticación
+- CRUD hacia Firestore
+- Se expandió el store añadiendo otros reducers
+- Seleccionar y subir archivos
+- Animaciones adicionales a nuestra aplicación
+- Limpieza en el logout
 
 Recuerden instalar los modulos de node con `npm install`.
